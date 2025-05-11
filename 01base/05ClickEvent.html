@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .bu{
+            background-color: green;
+            height: 50px;
+        }
+        .box1{
+            padding: 5px;
+            background-color: skyblue;
+        }
+        .box2{
+            background-color: aqua;
+        }
+        .list{
+            width: 200px;
+            height:200px;
+            background-color: aquamarine;
+            overflow: auto;
+        }
+        li{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h2>可视电话刚开始时</h2>
+        <button v-on:click="showInfo1">Click me1</button>
+        <button @click="showInfo1">Click me2</button>
+        <button @click="showInfo2($event, 654)">Click me3</button>
+        <a href="http://huajieyu001.top" @click.prevent="toHuajieyu($event, 66)">Click me to huajieyu001</a>
+        <div class="bu2" @click="showInfo">
+            <div class="bu" @click="showInfo">
+                <button @click.stop="showInfo">Click</button>
+            </div>
+        </div>
+
+        <div class="box1" @click.capture="showMsg(1)">
+            div1
+            <div class="box2" @click="showMsg(2)">
+                div2
+            </div>
+        </div>
+
+        <div class="bu" @click.self="ifTarget">
+            <button @click="ifTarget">Click 3 for target</button>
+        </div>
+        
+        <ul class="list" @wheel="scr">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:"#root",
+            data:{
+                name:"Hello"
+            },
+            methods:{
+                showInfo1(event){
+                    alert("Hello !")
+                },
+                showInfo2(e, num){
+                    alert("e !" + e)
+                    alert("Hello !" + num)
+                },
+                toHuajieyu(e, num){
+                    alert("Sure to anothor web?")
+                    if(num == 66){
+                    }
+                },
+                showInfo(){
+                    alert("Hahahaa")
+                },
+                showMsg(msg){
+                    alert(msg)
+                },
+                ifTarget(e){
+                    console.log(e.target)
+                },
+                scr(){
+                    // for(let i = 0; i < 100000; i++){
+                    //     console.log("@")
+                    // }
+                    console.log("撒大公司")
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>

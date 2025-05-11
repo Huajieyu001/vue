@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <script >
+
+        let o1 = {x:100}
+        let o2 = {y:200}
+
+        Object.defineProperty(o2, "x", {
+            get(){
+                return o1.x;
+            },
+            set(value){
+                o1.x = value;
+            }
+        })
+        console.log("Hello")
+
+        const vm = new Vue({
+            data:{
+                name:"aaa",
+                age:24
+            }
+        })
+    </script>
+    
+</body>
+</html>
