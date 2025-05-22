@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        firstname: <input type="text" v-model="firstName"><br>
+        lastname: <input type="text" v-model="lastName"><br><br>
+        name:<span>{{fullName}}</span>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                firstName:"zhang",
+                lastName:"san"
+            },
+            computed:{
+                // fullName:{
+                //     get(){
+                //         console.log("get")
+                //         return this.firstName + '-' + this.lastName
+                //     },
+                //     set(str){
+                //         const arr = str.split('-')
+                //         this.firstName = arr[0]
+                //         this.lastName = arr[1]
+                //     }
+                // }
+                // 只用get不用set的时候可以简写computed
+                fullName(){
+                    console.log("get")
+                    return this.firstName + '-' + this.lastName
+                }
+            }
+        })
+
+    </script>
+</body>
+</html> 
