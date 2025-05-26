@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度监视</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气很{{state}}</h2>
+        <button @click="isHot = !isHot">Click me</button>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            isHot:true,
+            state:"hot"
+        },
+        computed:{
+            info(){
+                return this.isHot ? '热' : '凉'
+            }
+        },
+        watch:{
+            isHot(newValue, oldValue){
+                console.log(newValue, oldValue)
+                console.log("watch!!!")
+                if(newValue === true) {
+                    this.state = 'Cool'
+                    console.log("A")
+                }
+                else {
+                    this.state = 'Hottt!!'
+                    console.log("B")
+                }
+                console.log("C", this.state)
+            }
+        }
+    })
+
+</script>
+</html>
