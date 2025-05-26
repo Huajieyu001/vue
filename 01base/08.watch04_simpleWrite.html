@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度监视</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气很{{info}}</h2>
+        <button @click="isHot = !isHot">Click me</button>
+        <hr>
+        <hr>
+        <span>a = {{nums.a}}</span>
+        <span>b = {{nums.b}}</span>
+        <button @click="nums.a++">Click a ++</button>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            isHot:true,
+            nums:{
+                a:1,
+                b:2
+            }
+        },
+        computed:{
+            info(){
+                return this.isHot ? '热' : '凉'
+            }
+        },
+        watch:{
+            isHot(newValue, oldValue){
+                console.log('isHot is modified!')
+                console.log(oldValue + ' -- > ' + newValue)
+            }
+        }
+    })
+
+    vm.$watch('nums.a', {
+        handler(nv, ov){
+            console.log(ov, nv)
+        }
+    })
+
+    vm.$watch('nums', {
+        deep:true,
+        handler(nv, ov){
+            console.log('At vm.$watch', ov, '--->', nv)
+        }
+    })
+</script>
+</html>
