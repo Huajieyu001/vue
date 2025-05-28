@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="(p, index) in persons" :key="p.id">姓名{{p.name}} - 年龄{{p.age}} - {{index}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(p) in objj">{{p}}</li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el:"#root",
+        data:{
+            persons:[
+                {
+                    id:1,
+                    name:"zhangsan",
+                    age:18
+                },
+                {
+                    id:2,
+                    name:"rosy",
+                    age:14
+                },
+                {
+                    id:3,
+                    name:"lish",
+                    age:24
+                },
+                {
+                    id:4,
+                    name:"john",
+                    age:20
+                },
+                {
+                    id:5,
+                    name:"tom",
+                    age:16
+                }
+            ],
+            objj:{
+            name:"tom",
+            age:16,
+            brand:"Tkl"
+        }
+        }
+    })
+</script>
+</html>
