@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key的原理</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <input type="text" placeholder="Please input:" v-model="keyword">
+        <button @click="order=1">asc</button>
+        <button @click="order=2">desc</button>
+        <button @click="order=0">source</button>
+        <ul>
+            <li v-for="(p, index) in cList" :key="p.id">{{p.name}} - {{p.age}} - {{p.sex}}</li>
+        </ul>
+        <hr>
+    </div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el:"#root",
+        data:{
+            keyword:"",
+            persons:[
+                {
+                    id:1,
+                    name:"马冬梅",
+                    age:18,
+                    sex:"女"
+                },
+                {
+                    id:2,
+                    name:"周冬雨",
+                    age:14,
+                    sex:"女"
+                },
+                {
+                    id:3,
+                    name:"周杰伦",
+                    age:24,
+                    sex:"男"
+                },
+                {
+                    id:4,
+                    name:"王杰",
+                    age:20,
+                    sex:"男"
+                },
+                {
+                    id:5,
+                    name:"周华健",
+                    age:16,
+                    sex:"男"
+                }
+            ],
+            shows: [],
+            order: 0
+        },
+        methods:{
+            asc(){
+                this.cList = []
+            },
+            desc(){
+                console.log(1)
+            }
+        }
+        ,
+        // watch:{
+        //     keyword:{
+        //         immediate:true,
+        //         handler(val){
+        //             this.shows = this.persons.filter((p)=>{
+        //                 return p.name.indexOf(val) !== -1
+        //             })
+        //         }
+        //     }
+        // }
+        computed:{
+            cList:{
+               get(){
+                const arr = this.shows = this.persons.filter((p)=>{
+                        return p.name.indexOf(this.keyword) !== -1
+                    })
+                if (this.order == 1){
+                    return arr.sort((a, b)=>{
+                        return a.age - b.age
+                    })
+                }else if(this.order == 2){
+                    return arr.sort((a, b)=>{
+                        return b.age - a.age
+                    })
+                }
+                return arr
+               }
+            }
+        }
+    })
+
+    // vm.shows=vm.persons
+</script>
+</html>
