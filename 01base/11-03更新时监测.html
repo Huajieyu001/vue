@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key的原理</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button @click="update1()">Click madongmei</button>
+        <ul>
+            <li v-for="(p, index) in persons" :key="p.id">{{p.name}} - {{p.age}} - {{p.sex}}</li>
+        </ul>
+        <hr>
+    </div>
+</body>
+<script type="text/javascript">
+    const vm = new Vue({
+        el:"#root",
+        data:{
+            persons:[
+                {
+                    id:1,
+                    name:"马冬梅",
+                    age:18,
+                    sex:"女"
+                },
+                {
+                    id:2,
+                    name:"周冬雨",
+                    age:14,
+                    sex:"女"
+                },
+                {
+                    id:3,
+                    name:"周杰伦",
+                    age:24,
+                    sex:"男"
+                },
+                {
+                    id:4,
+                    name:"王杰",
+                    age:20,
+                    sex:"男"
+                },
+                {
+                    id:5,
+                    name:"周华健",
+                    age:16,
+                    sex:"男"
+                }
+            ],
+            shows: [],
+            order: 0
+        },
+        methods:{
+            update1(){
+                // 生效
+                // this.persons[0].name = "袁华"
+                // this.persons[0].age = 24
+                // this.persons[0].sex = "男"
+
+                this.persons[0] = {
+                    name:"王大锤",
+                    age:54,
+                    sex:"男"
+                }
+            }
+        }
+    })
+
+    // vm.shows=vm.persons
+</script>
+</html>
