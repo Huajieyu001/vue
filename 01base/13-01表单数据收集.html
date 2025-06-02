@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <form>
+            <label for="MyAccount">Account:</label>
+            <input type="text" placeholder="Please input your account" id="MyAccount" v-model="account">
+            <br>
+            <br>
+            <label for="MyPassword">Password:</label>
+            <input type="password" placeholder="Please input your password" id="MyPassword" v-model="password">
+            <br>
+            <br>
+            Gender:
+            <label for="MyGenderM">Male:</label>
+            <input type="radio" id="MyGenderM" value="male" name="MyGender" v-model="gender">
+            <label for="MyGenderF">Female:</label>
+            <input type="radio" id="MyGenderF" value="female" name="MyGender" v-model="gender">
+            <br>
+            <br>
+            Hobby:
+            <label for="MyStudy">Study:</label>
+            <input type="checkbox" name="MyHobby" value="study" id="MyStudy" v-model="hobby">
+            <label for="MyGame">Game:</label>
+            <input type="checkbox" name="MyHobby" value="game" id="MyGame" v-model="hobby">
+            <label for="MyEat">Eat:</label>
+            <input type="checkbox" name="MyHobby" value="eat" id="MyEat" v-model="hobby">
+            <br>
+            <br>
+            Area:
+            <select v-model="area">
+                <option value="">Please select area</option>
+                <option value="Beijing">Beijing</option>
+                <option value="Shanghai">Shanghai</option>
+                <option value="Hangzhou">Hangzhou</option>
+            </select>
+            <br>
+            <br>
+            <label for="MyInfo">Info:</label>
+            <textarea id="MyInfo" placeholder="Please input your comment"  v-model="info"></textarea>
+            <br>
+            <br>
+            <label for="Agreeable">Read user protocol and agree our protocol</label>
+            <input type="checkbox" id="Agreeable" value="agreeFlag" v-model="checkFlag">
+            <br>
+            <br>
+            <button>Submit</button>
+        </form>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                account:'',
+                password:'',
+                gender:'',
+                hobby:[],
+                area:'',
+                info:'',
+                checkFlag: false
+            }
+        })
+    </script>
+</body>
+</html>
