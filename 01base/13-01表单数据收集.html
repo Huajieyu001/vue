@@ -8,33 +8,37 @@
 </head>
 <body>
     <div id="root">
-        <form>
+        <form @submit.prevent="demo">
             <label for="MyAccount">Account:</label>
-            <input type="text" placeholder="Please input your account" id="MyAccount" v-model="account">
+            <input type="text" placeholder="Please input your account" id="MyAccount" v-model.trim  ="userInfo.account">
             <br>
             <br>
             <label for="MyPassword">Password:</label>
-            <input type="password" placeholder="Please input your password" id="MyPassword" v-model="password">
+            <input type="password" placeholder="Please input your password" id="MyPassword" v-model="userInfo.password">
+            <br>
+            <br>
+            <label for="MyAge">Age:</label>
+            <input type="number" placeholder="Please input your age" id="MyAge" v-model.number="userInfo.age">
             <br>
             <br>
             Gender:
             <label for="MyGenderM">Male:</label>
-            <input type="radio" id="MyGenderM" value="male" name="MyGender" v-model="gender">
+            <input type="radio" id="MyGenderM" value="male" name="MyGender" v-model="userInfo.gender">
             <label for="MyGenderF">Female:</label>
-            <input type="radio" id="MyGenderF" value="female" name="MyGender" v-model="gender">
+            <input type="radio" id="MyGenderF" value="female" name="MyGender" v-model="userInfo.gender">
             <br>
             <br>
             Hobby:
             <label for="MyStudy">Study:</label>
-            <input type="checkbox" name="MyHobby" value="study" id="MyStudy" v-model="hobby">
+            <input type="checkbox" name="MyHobby" value="study" id="MyStudy" v-model="userInfo.hobby">
             <label for="MyGame">Game:</label>
-            <input type="checkbox" name="MyHobby" value="game" id="MyGame" v-model="hobby">
+            <input type="checkbox" name="MyHobby" value="game" id="MyGame" v-model="userInfo.hobby">
             <label for="MyEat">Eat:</label>
-            <input type="checkbox" name="MyHobby" value="eat" id="MyEat" v-model="hobby">
+            <input type="checkbox" name="MyHobby" value="eat" id="MyEat" v-model="userInfo.hobby">
             <br>
             <br>
             Area:
-            <select v-model="area">
+            <select v-model="userInfo.area">
                 <option value="">Please select area</option>
                 <option value="Beijing">Beijing</option>
                 <option value="Shanghai">Shanghai</option>
@@ -43,11 +47,11 @@
             <br>
             <br>
             <label for="MyInfo">Info:</label>
-            <textarea id="MyInfo" placeholder="Please input your comment"  v-model="info"></textarea>
+            <textarea id="MyInfo" placeholder="Please input your comment"  v-model.lazy="userInfo.info"></textarea>
             <br>
             <br>
             <label for="Agreeable">Read user protocol and agree our protocol</label>
-            <input type="checkbox" id="Agreeable" value="agreeFlag" v-model="checkFlag">
+            <input type="checkbox" id="Agreeable" value="agreeFlag" v-model="userInfo.checkFlag">
             <br>
             <br>
             <button>Submit</button>
@@ -57,13 +61,21 @@
         const vm = new Vue({
             el:"#root",
             data:{
-                account:'',
-                password:'',
-                gender:'',
-                hobby:[],
-                area:'',
-                info:'',
-                checkFlag: false
+                userInfo:{
+                    account:'',
+                    password:'',
+                    age: 0,
+                    gender:'',
+                    hobby:[],
+                    area:'',
+                    info:'',
+                    checkFlag: false
+                }
+            },
+            methods:{
+                demo(e){
+                    console.log(JSON.stringify(this.userInfo))
+                }
             }
         })
     </script>
