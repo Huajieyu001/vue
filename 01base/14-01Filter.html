@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>Formated time</h2>
+        <h3>computed {{fmtTime}}</h3>
+        <h3>method {{getFmtTime()}}</h3>
+        <h3>filter {{time | formatFilter}}</h3>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                time:Date.now()
+            },
+            computed:{
+                fmtTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH-mm-ss')
+                }
+            },
+            methods:{
+                getFmtTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH-mm-ss')
+                }
+            },
+            filters:{
+                formatFilter(){
+                    return dayjs(this.time).format('YYYY--MM-DD HH-mm-ss')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
