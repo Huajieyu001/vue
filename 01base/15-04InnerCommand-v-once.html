@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h3 v-once>n = {{n}}</h3>
+        <h3>n = {{n}}</h3>
+        <button @click="n++">Click n++</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                n:1
+            }
+        })
+    </script>
+</body>
+</html>

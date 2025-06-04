@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>
+            Source:<span v-text="n"></span>
+        </h2>
+        <h2>
+            Now:<span v-big="n"></span>
+        </h2>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'Tom',
+                n:5,
+                msg:'<h1>HAHAHA</h1>'
+            }
+        })
+    </script>
+</body>
+</html>
