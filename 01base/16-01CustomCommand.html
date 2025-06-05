@@ -14,6 +14,8 @@
         <h2>
             Now:<span v-big="n"></span>
         </h2>
+        <button @click="n++">Click n++</button>
+        <input type="text" v-fbind="n">
     </div>
     <script>
         const vm = new Vue({
@@ -22,6 +24,26 @@
                 name:'Tom',
                 n:5,
                 msg:'<h1>HAHAHA</h1>'
+            },
+            directives:{
+                big(el, bind){
+                    el.innerText = bind.value * 10
+                },
+                fbind:{
+                    bind(el, bind){
+                        console.log('bind')
+                        el.value = bind.value
+                    },
+                    inserted(el, bind){
+                        console.log('inserted')
+                        el.focus()
+                    },
+                    update(el, bind){
+                        console.log('update')
+                        el.value = bind.value
+                        el.focus()
+                    }
+                }
             }
         })
     </script>
