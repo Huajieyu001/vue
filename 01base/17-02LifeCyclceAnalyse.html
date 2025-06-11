@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1 :style="{opacity}">Hello World</h1>
+        <span>{{n}}</span>
+        <br>
+        <button @click="n++">click</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#root',
+            data :{
+                opacity:1,
+                n:1
+            },
+            methods:{
+                change(){
+                    
+                }
+            },
+            beforeCreate(){
+                console.log('beforeCreate...')
+                console.log(this.opacity)
+            },
+            created(){
+                console.log('beforeCreate...')
+                console.log(this.opacity)
+            },
+            beforeMount() {
+                console.log('beforeMount...')
+                // debugger
+                console.log(this.opacity)
+            },
+            mounted(){
+                console.log('mounted...')
+                console.log(this.opacity)
+            },
+            beforeUpdate(){
+                console.log('beforeUpdate')
+                console.log(this.n)
+            },
+            updated(){
+                console.log('updated')
+                console.log(this.n)
+                debugger
+            }
+        })
+    </script>
+</body>
+</html>
