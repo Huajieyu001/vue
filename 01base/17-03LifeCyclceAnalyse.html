@@ -11,18 +11,34 @@
         <h1 :style="{opacity}">Hello World</h1>
         <span>{{n}}</span>
         <br>
-        <button @click="n++">click</button>
+        <button @click="change()">click</button>
+        <br>
+        <button @click="clear()">clear swap</button>
+        <br>
+        <button @click="end()">end swap</button>
     </div>
     <script>
         const vm = new Vue({
             el:'#root',
             data :{
                 opacity:1,
-                n:1
+                n:1,
+                id: null
             },
             methods:{
                 change(){
-                    
+                    this.id = setInterval(() => {
+                        this.opacity -= 0.01
+                        if(this.opacity <= 0){
+                            this.opacity = 1
+                        }
+                    }, 16)
+                },
+                clear(){
+                    clearInterval(this.id)
+                },
+                end(){
+                    this.$destroy()
                 }
             },
             beforeCreate(){
@@ -60,10 +76,6 @@
                 console.log(this.n)
             },
         })
-
-        setInterval(() => {
-            vm.$destroy()
-        }, 5000);
     </script>
 </body>
 </html>
