@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <xuexiao></xuexiao>
+        <xuexiao></xuexiao>
+        <hr>
+        <xuesheng></xuesheng>
+        <hello></hello>
+    </div>
+    <div id="root2">
+        <hr>
+        <h1>++++++++++++++++</h1>
+        <hello></hello>
+    </div>
+    <script>
+        const school = Vue.extend({
+            template:`
+            <div>
+                <h2>{{schoolName}}</h2>
+                <h2>{{location}}</h2>
+            </div>`,
+            data(){
+                return {
+                    schoolName:'University',
+                    location:'BeiJing'
+                }
+            }
+        })
+
+        const student = Vue.extend({
+            template:`
+            <div>
+                <h2>{{studentName}}</h2>
+                <h2>{{age}}</h2>
+            </div>`,
+            data(){
+                return {
+                    studentName:'Tom',
+                    age:18
+                }
+            }
+        })
+
+        const hello = Vue.extend({
+            data(){
+                return {
+                    name: 'John'
+                }
+            },
+            template:`
+            <div>
+                <h1>{{name}} 你好！</h1>
+            </div>`
+        })
+
+        // 全局注册组件
+        Vue.component('hello', hello)
+
+        new Vue({
+            el:'#root',
+            // 局部注册组件
+            components:{
+                xuexiao:school,
+                xuesheng:student
+            }
+        })
+
+        new Vue({
+            el:'#root2',
+            // components:{
+            //     // hello
+            // }
+        })
+
+
+
+    </script>
+</body>
+</html>
