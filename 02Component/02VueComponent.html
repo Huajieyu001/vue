@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+
+        const school = {
+            template:`
+            <div>
+                <h2>{{name}}</h2>
+                <h2>{{location}}</h2>
+            </div>`,
+            data(){
+                return {
+                    name:'MyU',
+                    location:'ShangHai'
+                }
+            }
+        }
+
+        const vm = new Vue({
+            template:'<school></school>',
+            el:'#root',
+            components:{
+                school
+            }
+        })
+
+        console.log(school)
+
+    </script>
+</body>
+</html>

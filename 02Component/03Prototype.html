@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+
+        function Demo(){
+            this.a = 'AAA'
+            this.b = 'BBB'
+        }
+ 
+        const d = new Demo()
+        console.log(Demo.prototype)
+        console.log(d.__proto__)
+
+        console.log(Demo.prototype == d.__proto__)
+    </script>
+</body>
+</html>
