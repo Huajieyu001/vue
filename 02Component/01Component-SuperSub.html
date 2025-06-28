@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <app></app>
+    </div>
+    <script>
+
+        const hello = {
+            template: `<h2>{{msg}}</h2>`,
+            data(){
+                return {
+                    msg:'Hello world'
+                }
+            }
+        }
+
+        const student = {
+            name:'my-hello',
+            template:`
+                <div>
+                    <h2>My name is {{name}}, I am {{age}} years old.</h2>
+                </div>`,
+            data(){
+                return {
+                    name:'huajieyu',
+                    age:18
+                }
+            }
+        }
+
+        const school = {
+            name:'school',
+            template:`
+                <div>
+                    <h2>school - {{school}}</h2>
+                    <h2>location - {{location}}</h2>
+                    <student></student>
+                </div>`,
+            data(){
+                return {
+                    school:'University',
+                    location: 'BeiJing'
+                }
+            },
+            components:{
+                student,
+            }
+        }
+
+        const app = {
+            template:`
+            <div>
+                <school></school>
+                <hello></hello>
+            </div>
+            `,
+            components:{
+                school,
+                hello
+            }
+        }
+        
+        const vm = new Vue({
+            el:'#root',
+            components:{
+                app,
+                school,
+                hello
+            }
+        })
+    </script>
+    
+</body>
+</html>
