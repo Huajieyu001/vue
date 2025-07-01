@@ -1,19 +1,18 @@
 <template>
     <div id="app">
-        <Setudent/>
-        <hr>
-        <Setudent name='Tom' gender='male' age='18+1'/>
-        <hr>
-        <Setudent name='Rosy' gender='female' :age='17+1'/>
-    </div>
+        <!-- <Student/> -->
+        <!-- <School/> -->
+    </div>  
 </template>
 
 <script lang='js'>
-    import Setudent from './components/Setudent'
+    // import Student from './components/Student'
+    // import School from './components/School'
     export default {
         name:'App',
         components:{
-            Setudent
+            // Student,
+            // School
         }
     }
 </script>
