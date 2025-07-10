@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 @click='showName'>my name is :{{name}}</h1>
-        <h1>my age is :{{age}}</h1>
+        <h1 class="test">my name is :{{name}}</h1>
+        <h1 class="test">my age is :{{age}}</h1>
     </div>
 </template>
 
@@ -14,12 +14,11 @@
                 age: 18
             }
         },
-        mixins:[show,testData2,testData]
     }
 </script>
 
 <style scoped>
-    h2{
-        color: red
+    .test{
+        background-color: orange;
     }
 </style>
