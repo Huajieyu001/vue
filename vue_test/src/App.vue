@@ -1,18 +1,48 @@
 <template>
     <div id="app">
-        <!-- <Student/> -->
-        <!-- <School/> -->
+        <MyHeader :receive="receive"/>
+        <Todos :todos="todos"/>
+        <MyFooter :completed="1" :total="2"/>
     </div>  
 </template>
 
 <script lang='js'>
-    // import Student from './components/Student'
-    // import School from './components/School'
+    import MyHeader from './components/MyHeader'
+    import Todos from './components/Todos'
+    import MyFooter from './components/MyFooter'
     export default {
         name:'App',
         components:{
-            // Student,
-            // School
+            MyHeader,
+            Todos,
+            MyFooter
+        },
+        data(){
+            return {
+                todos:[
+                {
+                    id:1,
+                    title:'唱歌',
+                    checked: true
+                },{
+                    id:2,
+                    title:'跳舞',
+                    checked: true
+                },{
+                    id:3,
+                    title:'飙车',
+                    checked: false
+                },
+            ]
+            }
+        },
+        methods:{
+            receive(todo){
+                this.todos.push(todo)
+            },
+            del(id){
+                
+            }
         }
     }
 </script>
