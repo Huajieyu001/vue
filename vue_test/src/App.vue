@@ -1,8 +1,8 @@
 <template>
     <div id="app">
         <MyHeader :receive="receive"/>
-        <Todos :todos="todos"/>
-        <MyFooter :completed="1" :total="2"/>
+        <Todos :todos="todos" :changeStatus="changeStatus" :deleteTodo="deleteTodo"/>
+        <MyFooter :todos="todos" :deleteChecked="deleteChecked" :selectAll="selectAll"/>
     </div>  
 </template>
 
@@ -38,15 +38,43 @@
         },
         methods:{
             receive(todo){
-                this.todos.push(todo)
+                this.todos.unshift(todo)
             },
             del(id){
-                
+
+            },
+            changeStatus(id){
+                this.todos.forEach(e=>{
+                    if(e.id == id){
+                        e.checked = !e.checked
+                        return
+                    }
+                })
+            },
+            deleteTodo(id){
+                this.todos = this.todos.filter(e => e.id != id)
+            },
+            deleteChecked(){
+                this.todos = this.todos.filter(e => e.checked == false)
+            },
+            selectAll(){
+                let checkCount = this.todos.reduce((pre, todo) => pre + (todo.checked ? 1 : 0), 0)
+                let flag = false
+                if(checkCount != this.todos.length){
+                    flag = true
+                }
+                this.todos.forEach(e => {
+                    e.checked = flag
+                })
             }
         }
     }
 </script>
 
 <style scoped>
-
+    #app{
+        border: solid 1px;
+        padding: 10px 10px;
+        margin: 20px 20px;
+    }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Todo v-for="(todo) in todos" :todo='todo' :key="todo.id"/>
+    <Todo v-for="(todo) in todos" :todo='todo' :key="todo.id" :changeStatus="changeStatus" :deleteTodo="deleteTodo"/>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     methods:{
         del(){}
     },
-    props:['todos']
+    props:['todos','changeStatus','deleteTodo']
 }
 </script>
 
