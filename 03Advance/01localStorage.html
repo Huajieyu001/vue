@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="saveData()">Save something</button>
+    <br>
+    <button onclick="readData()">Read something</button>
+    <br>
+    <button onclick="removeData()">Remove something</button>
+    <br>
+    <button onclick="clearData()">Clear something</button>
+</body>
+<script>
+    function saveData(){
+        let m = {age:24, name:'tom'}
+        localStorage.setItem('myPhone',12345678900)
+        localStorage.setItem('myEmail','111@qq.com')
+        localStorage.setItem('me',JSON.stringify(m))
+    }
+    function readData(){
+        console.log(localStorage.getItem('myPhone'))
+        console.log(localStorage.getItem('myEmail'))
+        console.log(localStorage.getItem('me'))
+    }
+    function removeData(){
+        localStorage.removeItem('myPhone')
+        localStorage.removeItem('myEmail')
+        localStorage.removeItem('me')
+    }
+    function clearData(){
+        localStorage.clear()
+    }
+</script>
+</html>
