@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="saveData()">Save something</button>
+    <br>
+    <button onclick="readData()">Read something</button>
+    <br>
+    <button onclick="removeData()">Remove something</button>
+    <br>
+    <button onclick="clearData()">Clear something</button>
+</body>
+<script>
+    function saveData(){
+        let m = {age:24, name:'tom'}
+        sessionStorage.setItem('myPhone',12345678900)
+        sessionStorage.setItem('myEmail','111@qq.com')
+        sessionStorage.setItem('me',JSON.stringify(m))
+    }
+    function readData(){
+        console.log(sessionStorage.getItem('myPhone'))
+        console.log(sessionStorage.getItem('myEmail'))
+        console.log(sessionStorage.getItem('me'))
+    }
+    function removeData(){
+        sessionStorage.removeItem('myPhone')
+        sessionStorage.removeItem('myEmail')
+        sessionStorage.removeItem('me')
+    }
+    function clearData(){
+        sessionStorage.clear()
+    }
+</script>
+</html>
