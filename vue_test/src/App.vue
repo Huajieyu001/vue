@@ -1,38 +1,107 @@
 <template>
     <div id="app">
-        <!-- 通过props -->
-        <School :sendSchoolName="getSchoolName"/>
-
-        <!-- 通过v-on和@ -->
-        <!-- <Student v-on:huajieyu="getStudentName"/> -->
-
-        <!-- 通过绑定事件和refs..$on -->
-        <Student ref="student" @f1='getStudentName'/>
+        <MyHeader :receive="receive"/>
+        <Todos :todos="todos"/>
+        <MyFooter :todos="todos" :deleteChecked="deleteChecked" :selectAll="selectAll"/>
     </div>  
 </template>
 
 <script lang='js'>
-    import School from './components/School'
-    import Student from './components/Student'
+    import MyHeader from './components/MyHeader'
+    import Todos from './components/Todos'
+    import MyFooter from './components/MyFooter'
+    import pubsub from 'pubsub-js'
+
+    function updateStorage(e){
+        console.log('updateStorage......')
+        localStorage.setItem('todos', JSON.stringify(e))
+    }
     export default {
         name:'App',
         components:{
-            School,
-            Student
+            MyHeader,
+            Todos,
+            MyFooter
+        },
+        data(){
+            return {
+                todos: JSON.parse(localStorage.getItem('todos')) == null ? [] : JSON.parse(localStorage.getItem('todos'))
+            }
         },
         methods:{
-            getSchoolName(name){
-                console.log('App sendSchoolName recerved name = ' + name)
+            receive(todo){
+                this.todos.unshift(todo)
+                updateStorage(this.todos)
             },
-            getStudentName(name){
-                console.log('App huajieyu recerved name = ' + name)
+            del(id){
+
+            },
+            changeStatus(id){
+                this.todos.forEach(e=>{
+                    if(e.id == id){
+                        e.checked = !e.checked
+                        return
+                    }
+                })
+                updateStorage(this.todos)
+            },
+            deleteTodo(id){
+                this.todos = this.todos.filter(e => e.id != id)
+                updateStorage(this.todos)
+            },
+            deleteChecked(){
+                this.todos = this.todos.filter(e => e.checked == false)
+                updateStorage(this.todos)
+            },
+            selectAll(){
+                let checkCount = this.todos.reduce((pre, todo) => pre + (todo.checked ? 1 : 0), 0)
+                let flag = false
+                if(checkCount != this.todos.length){
+                    flag = true
+                }
+                this.todos.forEach(e => {
+                    e.checked = flag
+                })
+            },
+            revertStorage(){
+                this.todos = JSON.parse(localStorage.getItem('todos'))
+            }
+        },
+        watch:{
+            todos:{
+                deep:false,
+                handler(value){
+                    localStorage.setItem('todos', JSON.stringify(value))
+                }
             }
         },
         mounted(){
-            // 绑定事件
-            this.$refs.student.$on('huajieyu', this.getStudentName)
-            // 绑定一次性事件
-            // this.$refs.student.$once('huajieyu', this.getStudentName)
+            this.id1 = pubsub.subscribe('receive', (name, value)=>{
+                this.receive(value)
+            })
+
+            this.id2 = pubsub.subscribe('changeStatus', (name, value)=>{
+                this.changeStatus(value)
+            })
+
+            this.id3 = pubsub.subscribe('deleteTodo', (name, value)=>{
+                this.deleteTodo(value)
+            })
+
+            this.id4 = pubsub.subscribe('deleteChecked', (name, value)=>{
+                this.deleteChecked(value)
+            })
+
+            this.id5 = pubsub.subscribe('selectAll', ()=>{
+                this.selectAll()
+            })
+        },
+        beforeDestroy(){
+            pubsub.unsubscribe(id1)
+            pubsub.unsubscribe(id2)
+            pubsub.unsubscribe(id3)
+            pubsub.unsubscribe(id4)
+            pubsub.unsubscribe(id5)
         }
     }
 </script>
@@ -42,6 +111,5 @@
         border: solid 1px;
         padding: 10px 10px;
         margin: 20px 20px;
-        background-color: green;
     }
 </style>
