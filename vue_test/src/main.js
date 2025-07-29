@@ -7,5 +7,8 @@ new Vue({
         render(create){
             return create(App)
         }
-    }
+        // beforeCreate(){
+        //     Vue.prototype.$bus = this
+        // }
+    },
 )
