@@ -6,9 +6,9 @@ new Vue({
         el:'#app',
         render(create){
             return create(App)
+        },
+        beforeCreate(){
+            Vue.prototype.$bus = this
         }
-        // beforeCreate(){
-        //     Vue.prototype.$bus = this
-        // }
     },
 )
