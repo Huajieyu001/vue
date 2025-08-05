@@ -65,6 +65,14 @@
             },
             revertStorage(){
                 this.todos = JSON.parse(localStorage.getItem('todos'))
+            },
+            updateTodo(id, title){
+                this.todos.forEach(e => {
+                    if(e.id == id){
+                        e.title = title
+                    }
+                })
+                updateStorage(this.todos)
             }
         },
         watch:{
@@ -76,6 +84,8 @@
             }
         },
         mounted(){
+            this.$bus.$on('updateTodo', this.updateTodo)
+            
             this.id1 = pubsub.subscribe('receive', (name, value)=>{
                 this.receive(value)
             })
@@ -95,6 +105,7 @@
             this.id5 = pubsub.subscribe('selectAll', ()=>{
                 this.selectAll()
             })
+
         },
         beforeDestroy(){
             pubsub.unsubscribe(id1)
@@ -106,10 +117,23 @@
     }
 </script>
 
-<style scoped>
+<style>
     #app{
         border: solid 1px;
         padding: 10px 10px;
         margin: 20px 20px;
+    }
+
+    .btn-edit{
+        color: #fff;
+        background-color: aquamarine;
+        border: 1 solid skyblue;
+        margin-left: 10px;
+    }
+
+    .btn-del{
+        color: #fff;
+        background-color: red;
+        border: 1 solid skyblue;
     }
 </style>
