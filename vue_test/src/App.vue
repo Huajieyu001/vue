@@ -1,24 +1,29 @@
 <template>
   <div>
-    <Test/>
-    <Test2/>
-    <Test3/>
-    <Test4/>
+    <button @click="getStudents">getStudents</button>
+    <button @click="getCars">getCars</button>
   </div>
 </template>
 
 <script>
-import Test from './components/Test.vue'
-import Test2 from './components/Test2.vue'
-import Test3 from './components/Test3.vue'
-import Test4 from './components/Test4.vue'
+import axios from 'axios'
 export default {
-    components:{
-        Test,
-        Test2,
-        Test3,
-        Test4
+  name:'App',
+  methods:{
+    getStudents(){
+      axios.get('http://localhost:8080/students').then(
+        response=>{
+          console.log('200:getStudents', response.data)
+        },
+        error => {
+          console.log('500:' + error.message)
+        }
+      )
+    },
+    getCars(){
+      axios.get('http://localhost:5001/cars')
     }
+  }
 }
 </script>
 
