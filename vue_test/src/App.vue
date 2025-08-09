@@ -1,32 +1,17 @@
 <template>
-  <div>
-    <button @click="getStudents">getStudents</button>
-    <button @click="getCars">getCars</button>
+  <div class="container">
+    <Count/>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import Count from './components/Count.vue'
 export default {
-  name:'App',
-  methods:{
-    getStudents(){
-      axios.get('http://localhost:8080/students').then(
-        response=>{
-          console.log('200:getStudents', response.data)
-        },
-        error => {
-          console.log('500:' + error.message)
-        }
-      )
-    },
-    getCars(){
-      axios.get('http://localhost:5001/cars')
-    }
+  components:{
+    Count
   }
 }
 </script>
 
 <style>
-
 </style>
