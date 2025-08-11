@@ -2,18 +2,17 @@
   <div class="container">
     <Count/>
     <hr>
-    <!-- <Person/> -->
+    <Person/>
   </div>
 </template>
 
 <script>
 import Count from './components/Count.vue'
-// import Person from './components/Person.vue'
+import Person from './components/Person.vue'
 export default {
   components:{
-    Count
-    // ,
-    // Person
+    Count,
+    Person
   }
 }
 </script>
