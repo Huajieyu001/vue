@@ -43,18 +43,17 @@ export default {
       //   this.$store.dispatch('incrementWait', this.num)
       // }
 
-      ...mapActions('a', ['incrementIfOdd', 'incrementWait']),
-      ...mapMutations('a', ['increment','decrement']),
+      ...mapActions(['incrementIfOdd', 'incrementWait']),
+      ...mapMutations(['increment','decrement']),
     },
     computed:{
       // 快速解析store的state元素的写法1：map解析
       // ...mapState({'he':'sum', 'xuexiao': 'school', 'kemu': 'subject'}),
       // 快速解析store的state元素的写法2：数组解析
-      ...mapState('a',['sum', 'school', 'subject', 'persons']),
-      ...mapGetters('a',['bigSum'])
+      ...mapState(['sum', 'school', 'subject', 'persons']),
+      ...mapGetters(['bigSum'])
     },
     mounted(){
-      console.log(this.$store)
     }
 }
 </script>
